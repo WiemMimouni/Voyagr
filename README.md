@@ -1,99 +1,76 @@
+# Voyagr
 
-# DelivAir
-
-Our app lets the user choose whether can be a sender or a shipper, in a context of sending or receiving physical goods in airplane luggage. Our app will be a contact intermediary and will give access to the users to view other people's posts, shows how much the user can carry, or send, show price per KG, departure/arrival time as well as instant chat between two users.
+Our app allows users to choose their role as either a sender or a shipper in the context of sending or receiving physical goods via airplane luggage. Voyagr acts as an intermediary, enabling users to view posts by other users, check available carrying capacity or goods to send, view pricing per kilogram, departure/arrival times, and communicate instantly through built-in chat functionality.
 
 ## Run Locally
 
-Clone the project
+### Clone the Project
 
 ```bash
-  git clone https://github.com/DelivAir/DelivAir
+git clone https://github.com/YourGitHubUsername/Voyagr
 ```
 
-Go to the project directory
+### Navigate to Project Directory
 
 ```bash
-  cd DelivAir
+cd Voyagr
 ```
 
-Install  dependencies
+### Install Main Dependencies
 
 ```bash
-  npm install
+npm install
 ```
 
-Start the server
+### Start the Server
 
 ```bash
-  cd server
+cd server
+npm install
+npm run start
 ```
 
+### Start the Socket.IO
+
 ```bash
-  npm install
+cd socket.io
+npm install
+npm run start
 ```
 
+### Start the Client App
+
 ```bash
-  npm run start
+cd client
+npm install
+npm run start
 ```
 
-Start the socket
+### Database Setup
+
+Create your database according to the provided schema:
 
 ```bash
-  cd socket.io
-```
-
-```bash
-  npm install
-```
-
-```bash
-  npm run start
-```
-
-Start the app
-
-```bash
-  cd client
-```
-
-```bash
-  npm install
-```
-
-```bash
-  npm run start
-```
-
-create the database with the provided schema
-
-```bash
-  npx prisma db pull
-```
-
-```bash
-  npx prsima generate
+npx prisma db pull
+npx prisma generate
 ```
 
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
+To run Voyagr, you will need to add these environment variables to your `.env` file:
 
-`DATABASE_URL`
-
-`ANOTHER_API_KEY`
+```env
+DATABASE_URL=your_database_url_here
+ANOTHER_API_KEY=your_api_key_here
+```
 
 ## Tech Stack
 
-**Client:** React, , TailwindCSS , ReactNative , expo , Cloudinary , FireBase,NativeBase
+- **Client:** React, TailwindCSS, React Native, Expo, Cloudinary, Firebase, NativeBase
+- **Server:** Node.js, Express, PostgreSQL
+- **Admin:** Next.js, TypeScript, Bootstrap
 
-**Server:** Node, Express,Postgresql
+## Author
 
-**Admin:** NextJS , TypeScript , Bootstrap
+- [Wiem Mimouni](https://github.com/WiemMimouni)
 
-## Authors
-
-- [@amineamdouni](https://github.com/amineamdouni)
-- [@MehdiDissem](https://github.com/MehdiDissem)
-- [@AzizSelini](https://github.com/AzizSelini)
-- [@houssem-fraj](https://github.com/houssem-fraj)
