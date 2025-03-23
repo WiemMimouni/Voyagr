@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import {  extendTheme } from "native-base";
+import { extendTheme } from 'native-base';
 
 import axios from "axios";
 
