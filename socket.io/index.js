@@ -1,35 +1,31 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const app = express();
 const socket = require("socket.io");
+const http = require("http");
 const messageRoutes = require("./routes/messages");
 const usersRoutes = require("./routes/users");
-const http = require("http");
+
+const app = express();
 const server = http.createServer(app);
 
 app.use(cors());
 app.use(express.json());
+
 mongoose.set("strictQuery", false);
-mongoose
-  .connect(
-    "mongodb+srv://root:root@cluster0.fkaxvra.mongodb.net/delivair",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
-  .then(() => {
-    console.log("DB Connetion Successfull");
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
+
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("✅ MongoDB Connected"))
+.catch((err) => console.error("❌ MongoDB Connection Error:", err.message));
 
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", usersRoutes);
 
-server.listen(3000, () => console.log("server started on 3000"));
+server.listen(3000, () => console.log("🚀 Server started on port 3000"));
 
 const io = socket(server, {
   cors: {
@@ -44,7 +40,6 @@ global.onlineUsers = new Map();
 io.on("connection", (socket) => {
   console.log(`⚡: ${socket.id} user just connected!`);
 
-  //sends the message to all the users on the server
   socket.on("message", (data) => {
     io.emit("messageResponse", data);
   });
@@ -53,8 +48,3 @@ io.on("connection", (socket) => {
     console.log("🔥: A user disconnected");
   });
 });
-
-// socket.on("disconnect", () => {
-//   socket.disconnect();
-//   console.log("🔥: A user disconnected");
-// });
